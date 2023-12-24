@@ -1,0 +1,8 @@
+STATE=Experimental
+INSTALLDIR=armle-v7/boot/build/
+INSTALLNAME=beaglebone.build
+NAME=build
+USER=devbox
+HOST=devbox
+DATE=2023/11/14-13:16:52-CET
+DESCRIPTION=Example build file for startup-ti-am335x-beaglebone

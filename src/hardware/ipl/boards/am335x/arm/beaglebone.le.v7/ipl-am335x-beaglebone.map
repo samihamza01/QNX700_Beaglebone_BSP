@@ -1,0 +1,300 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+                              main.o (fat_copy_named_file)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+                              main.o (image_scan_2)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+                              main.o (image_download_ser)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+                              main.o (startup_hdr)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(jump.o)
+                              /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o) (jump)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+                              main.o (omap_sdmmc_init_hc)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+                              main.o (sdmmc_init_sd)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+                              main.o (ser_poll)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+                              board.o (init_seromap)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(checksum_2.o)
+                              /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o) (checksum_2)
+/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)
+                              /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o) (copy)
+
+Allocating common symbols
+Common symbol       size              file
+
+fat_dev             0x4               /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+scratch             0x200             /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+startup_hdr         0x100             /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+temp1               0x4               main.o
+fs_info             0x4               /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00000000402f0400 0x000000000000fc00
+scratch          0x0000000080000000 0x0000000000100000
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+TARGET(elf32-littlearm)
+
+.text           0x00000000402f0400     0x38f4
+ _start.o(.text)
+ .text          0x00000000402f0400       0x54 _start.o
+                0x00000000402f0400                _start
+ *(.text)
+ .text          0x00000000402f0454      0x2e2 board.o
+                0x00000000402f0454                init_edma
+                0x00000000402f0514                wdt_disable
+                0x00000000402f054e                init_am335x
+ *fill*         0x00000000402f0736        0x2 
+ .text          0x00000000402f0738        0x8 boot_header.o
+ .text          0x00000000402f0740      0x200 ch_header.o
+ .text          0x00000000402f0940      0x50a init_am335x_ddr.o
+                0x00000000402f0940                MPU_PLL_Config
+                0x00000000402f09c6                CORE_PLL_Config
+                0x00000000402f0a6c                DDR_PLL_Config
+                0x00000000402f0aee                PER_PLL_Config
+                0x00000000402f0b70                DISP_PLL_Config
+                0x00000000402f0bee                PHY_Config_CMD
+                0x00000000402f0c30                PHY_Config_DATA
+                0x00000000402f0c90                EMIF_PRCM_CLK_ENABLE
+                0x00000000402f0ca8                VTP_Enable
+                0x00000000402f0ce2                init_am335x_ddr
+ .text          0x00000000402f0e4a       0x32 init_pinmux.o
+                0x00000000402f0e4a                init_pinmux
+ .text          0x00000000402f0e7c      0x352 main.o
+                0x00000000402f0e7c                get_uint
+                0x00000000402f0ef6                ipl_boot_menu
+                0x00000000402f1000                main
+ *fill*         0x00000000402f11ce        0x2 
+ .text          0x00000000402f11d0      0x6d8 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+                0x00000000402f146c                fat_parse_mbr
+                0x00000000402f163c                _fat_copy_named_file
+                0x00000000402f17ec                fat_copy_named_file
+                0x00000000402f186c                fat_init
+ .text          0x00000000402f18a8       0xbc /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+                0x00000000402f18a8                image_scan_2
+                0x00000000402f1910                image_setup_2
+                0x00000000402f1950                image_start_2
+ .text          0x00000000402f1964       0x7e /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+                0x00000000402f1964                download_abort
+                0x00000000402f197a                image_download_ser
+ *fill*         0x00000000402f19e2        0x2 
+ .text          0x00000000402f19e4       0xfc /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+                0x00000000402f19e4                zero_ok
+                0x00000000402f19fa                small_checksum
+                0x00000000402f1a10                checksum
+                0x00000000402f1a78                image_scan
+ .text          0x00000000402f1ae0       0x18 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(jump.o)
+                0x00000000402f1ae0                jump
+ .text          0x00000000402f1af8      0x80c /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+                0x00000000402f1b26                omap_sdmmc_fini
+                0x00000000402f2246                omap_sdmmc_init_hc
+ .text          0x00000000402f2304      0xbf8 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+                0x00000000402f2e20                sdmmc_powerup_card
+                0x00000000402f2e68                sdmmc_init_sd
+                0x00000000402f2ea8                sdmmc_init_mmc
+                0x00000000402f2eec                sdmmc_read
+                0x00000000402f2ef0                sdmmc_write
+                0x00000000402f2ef4                sdmmc_fini
+ .text          0x00000000402f2efc      0x128 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+                0x00000000402f2efc                init_serdev
+                0x00000000402f2f08                ser_poll
+                0x00000000402f2f18                ser_getchar
+                0x00000000402f2f28                ser_putchar
+                0x00000000402f2f50                ser_putstr
+                0x00000000402f2fa0                ser_putdec
+                0x00000000402f2ff0                ser_puthex32
+                0x00000000402f3000                ser_puthex16
+                0x00000000402f3010                ser_puthex8
+                0x00000000402f3020                ser_puthex
+ .text          0x00000000402f3024      0x134 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+                0x00000000402f3074                init_seromap
+ .text          0x00000000402f3158       0x84 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(checksum_2.o)
+                0x00000000402f3158                checksum_2
+ .text          0x00000000402f31dc       0x32 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)
+                0x00000000402f31dc                copy_memory
+                0x00000000402f320a                copy
+ *(.rodata*)
+ *fill*         0x00000000402f320e        0x2 
+ .rodata.str1.4
+                0x00000000402f3210       0x14 init_am335x_ddr.o
+ .rodata        0x00000000402f3224        0x8 main.o
+ .rodata.str1.4
+                0x00000000402f322c      0x334 main.o
+                                        0x336 (size before relaxing)
+ .rodata.str1.1
+                0x00000000402f3560      0x1cd /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+                                        0x1d1 (size before relaxing)
+ .rodata.str1.1
+                0x00000000402f372d       0x30 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+ *fill*         0x00000000402f375d        0x3 
+ .rodata        0x00000000402f3760       0xa4 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+ .rodata.str1.1
+                0x00000000402f3804      0x12b /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+                                        0x13d (size before relaxing)
+ *fill*         0x00000000402f392f        0x1 
+ .rodata        0x00000000402f3930       0x60 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+ .rodata.str1.1
+                0x00000000402f3990      0x339 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+                                        0x341 (size before relaxing)
+ .rodata        0x00000000402f3cc9       0x1c /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+ *fill*         0x00000000402f3ce5        0x3 
+ .rodata        0x00000000402f3ce8        0xc /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+ *(.glue_7)
+ .glue_7        0x00000000402f3cf4        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x00000000402f3cf4        0x0 linker stubs
+
+.vfp11_veneer   0x00000000402f3cf4        0x0
+ .vfp11_veneer  0x00000000402f3cf4        0x0 linker stubs
+
+.v4_bx          0x00000000402f3cf4        0x0
+ .v4_bx         0x00000000402f3cf4        0x0 linker stubs
+
+.iplt           0x00000000402f3cf4        0x0
+ .iplt          0x00000000402f3cf4        0x0 _start.o
+
+.note.gnu.build-id
+                0x00000000402f3cf4       0x20
+ *(.note.gnu.build-id)
+ .note.gnu.build-id
+                0x00000000402f3cf4       0x20 linker stubs
+                0x00000000402f3d14                _etext = .
+
+.rel.dyn        0x00000000402f3d14        0x0
+ .rel.iplt      0x00000000402f3d14        0x0 _start.o
+
+.data           0x00000000402f3d14        0x4
+ *(.data)
+ .data          0x00000000402f3d14        0x0 _start.o
+ .data          0x00000000402f3d14        0x0 board.o
+ .data          0x00000000402f3d14        0x0 boot_header.o
+ .data          0x00000000402f3d14        0x0 ch_header.o
+ .data          0x00000000402f3d14        0x0 init_am335x_ddr.o
+ .data          0x00000000402f3d14        0x0 init_pinmux.o
+ .data          0x00000000402f3d14        0x0 main.o
+ .data          0x00000000402f3d14        0x4 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(jump.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(checksum_2.o)
+ .data          0x00000000402f3d18        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)
+ *(.sdata)
+                0x00000000402f3d18                _edata = .
+
+.igot.plt       0x00000000402f3d18        0x0
+ .igot.plt      0x00000000402f3d18        0x0 _start.o
+
+.bss            0x00000000402f3d18      0x360
+ *(.bss)
+ .bss           0x00000000402f3d18        0x0 _start.o
+ .bss           0x00000000402f3d18        0x0 board.o
+ .bss           0x00000000402f3d18        0x0 boot_header.o
+ .bss           0x00000000402f3d18        0x0 ch_header.o
+ .bss           0x00000000402f3d18        0x0 init_am335x_ddr.o
+ .bss           0x00000000402f3d18        0x0 init_pinmux.o
+ .bss           0x00000000402f3d18        0x0 main.o
+ .bss           0x00000000402f3d18        0xc /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+ .bss           0x00000000402f3d24        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+ .bss           0x00000000402f3d24        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+ .bss           0x00000000402f3d24        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+ .bss           0x00000000402f3d24        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(jump.o)
+ .bss           0x00000000402f3d24       0x40 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+ .bss           0x00000000402f3d64        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+ .bss           0x00000000402f3d64        0x4 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+ .bss           0x00000000402f3d68        0x4 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+ .bss           0x00000000402f3d6c        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(checksum_2.o)
+ .bss           0x00000000402f3d6c        0x0 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)
+ *(.sbss)
+ COMMON         0x00000000402f3d6c        0x4 main.o
+                0x00000000402f3d6c                temp1
+ COMMON         0x00000000402f3d70        0x8 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+                0x00000000402f3d70                fat_dev
+                0x00000000402f3d74                fs_info
+ COMMON         0x00000000402f3d78      0x300 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+                0x00000000402f3d78                scratch
+                0x00000000402f3f78                startup_hdr
+
+.stack          0x00000000402f4078     0x3000
+ *.(*)
+ .stack         0x00000000402f4078     0x3000 _start.o
+
+.scratch        0x0000000080000000      0x440
+ *(.scratch)
+ .scratch       0x0000000080000000      0x440 main.o
+LOAD _start.o
+LOAD board.o
+LOAD boot_header.o
+LOAD ch_header.o
+LOAD init_am335x_ddr.o
+LOAD init_pinmux.o
+LOAD main.o
+LOAD /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a
+OUTPUT(/home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/am335x/arm/beaglebone.le.v7/ipl-am335x-beaglebone elf32-littlearm)
+
+.ARM.attributes
+                0x0000000000000000       0x2f
+ .ARM.attributes
+                0x0000000000000000       0x1f _start.o
+ .ARM.attributes
+                0x000000000000001f       0x33 board.o
+ .ARM.attributes
+                0x0000000000000052       0x1f boot_header.o
+ .ARM.attributes
+                0x0000000000000071       0x1f ch_header.o
+ .ARM.attributes
+                0x0000000000000090       0x33 init_am335x_ddr.o
+ .ARM.attributes
+                0x00000000000000c3       0x33 init_pinmux.o
+ .ARM.attributes
+                0x00000000000000f6       0x33 main.o
+ .ARM.attributes
+                0x0000000000000129       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+ .ARM.attributes
+                0x000000000000015c       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+ .ARM.attributes
+                0x000000000000018f       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+ .ARM.attributes
+                0x00000000000001c2       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+ .ARM.attributes
+                0x00000000000001f5       0x1f /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(jump.o)
+ .ARM.attributes
+                0x0000000000000214       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+ .ARM.attributes
+                0x0000000000000247       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+ .ARM.attributes
+                0x000000000000027a       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+ .ARM.attributes
+                0x00000000000002ad       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+ .ARM.attributes
+                0x00000000000002e0       0x1f /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(checksum_2.o)
+ .ARM.attributes
+                0x00000000000002ff       0x33 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)
+
+.comment        0x0000000000000000       0x34
+ .comment       0x0000000000000000       0x34 board.o
+                                         0x35 (size before relaxing)
+ .comment       0x0000000000000034       0x35 init_am335x_ddr.o
+ .comment       0x0000000000000034       0x35 init_pinmux.o
+ .comment       0x0000000000000034       0x35 main.o
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(fat-fs.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_2.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_download_ser.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(image_scan.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(omap_sdmmc.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(sdmmc.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(ser_dev.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(seromap.o)
+ .comment       0x0000000000000034       0x35 /home/devbox/ide-7.1-workspace/ti-am335x-beaglebone/src/hardware/ipl/boards/../../../../install/armle-v7/usr/lib/libipl.a(copy.o)

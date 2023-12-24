@@ -1,0 +1,3 @@
+define PINFO
+PINFO DESCRIPTION=AM335x IPL
+endef

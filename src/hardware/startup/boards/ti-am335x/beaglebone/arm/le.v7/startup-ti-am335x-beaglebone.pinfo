@@ -1,0 +1,8 @@
+STATE=Desktop
+INSTALLDIR=armle-v7/boot/sys/
+INSTALLNAME=startup-ti-am335x-beaglebone
+NAME=startup-ti-am335x-beaglebone
+USER=devbox
+HOST=devbox
+DATE=2023/11/14-13:16:52-CET
+DESCRIPTION=TI AM335x Cortex-A8 startup

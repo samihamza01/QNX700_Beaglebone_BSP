@@ -1,0 +1,8 @@
+STATE=Desktop
+INSTALLDIR=armle-v7/usr/lib/
+INSTALLNAME=libipl.a
+NAME=libipl.a
+USER=devbox
+HOST=devbox
+DATE=2023/10/30-18:10:08-CET
+DESCRIPTION=ipl library

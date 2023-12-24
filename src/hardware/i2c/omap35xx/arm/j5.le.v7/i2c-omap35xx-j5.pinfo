@@ -1,0 +1,8 @@
+STATE=Desktop
+INSTALLDIR=armle-v7/sbin/
+INSTALLNAME=i2c-omap35xx-j5
+NAME=i2c-omap35xx-j5
+USER=devbox
+HOST=devbox
+DATE=2023/10/30-18:10:07-CET
+DESCRIPTION=OMAP35xx I2C Driver

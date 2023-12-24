@@ -1,0 +1,8 @@
+STATE=Desktop
+INSTALLDIR=armle-v7/sbin/
+INSTALLNAME=rtc
+NAME=rtc
+USER=devbox
+HOST=devbox
+DATE=2023/10/30-18:10:34-CET
+DESCRIPTION=Set or get date from realtime clock
