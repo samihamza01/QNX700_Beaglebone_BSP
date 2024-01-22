@@ -39,7 +39,7 @@
     ## Use "-d" to enable watchdog timer support
     ##          please run "dm814x-wdtkick" with this option
     #######################################################################
-    startup-ti-am335x-beaglebone -d -P 1
+    startup-ti-am335x-beaglebone -d
 
     #######################################################################
     ## PATH set here is the *safe* path for executables.
@@ -47,12 +47,13 @@
     ##     i.e. These are the paths searched by setuid/setgid binaries.
     ##          (confstr(_CS_PATH...) and confstr(_CS_LIBPATH...))
     #######################################################################
-    PATH=/proc/boot:/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll procnto-smp-instr -v
+    PATH=:/proc/boot:/bin:/usr/bin:/sbin LD_LIBRARY_PATH=:/proc/boot:/lib:/usr/lib:/lib/dll procnto-smp-instr -v
 }
 [+script] .script = {
     # Initialise the console
+    procmgr_symlink ../../proc/boot/libc.so /usr/lib/ldqnx.so.2
 
-    display_msg Welcome to QNX Neutrino 7.1 on the Texas Instruments AM335x BeagleBone (ARMv7 Cortex-A8 core) - Board
+    display_msg Welcome to QNX Neutrino 7.0 on the Texas Instruments AM335x BeagleBone (ARMv7 Cortex-A8 core) - Board
 
     # Start some common servers
     slogger2
@@ -76,11 +77,10 @@
     devb-sdmmc-j5_generic sdio addr=0x48060000,irq=64,dma=25,dma=24,dma=128,dma=32,verbose=3,bs=nocd:nowp cam cache,pnp,async blk cache=8M disk name=sd
 
     # uncomment to mount the eMMC device on the Beaglebone Black board
-    #devb-sdmmc-j5_generic sdio addr=0x481D8000,irq=28,verbose=3,dma=3,dma=2,dma=160,dma=32,bs=emmc,bw=4 cam quiet,cache blk rw,cache=2M disk name=emmc
+    devb-sdmmc-j5_generic sdio addr=0x481D8000,irq=28,verbose=3,dma=3,dma=2,dma=160,dma=32,bs=emmc,bw=4 cam quiet,cache blk rw,cache=2M disk name=emmc
 	
-    waitfor /dev/sd0t12 3
-    mount -t dos /dev/sd0t12 /fs/sd 
-	
+	waitfor /dev/sd0t12 3 # added by sami
+	mount -t dos /dev/sd0t12 /mnt/sd # added by sami
     #######################################################################
     ## I2C driver
     #######################################################################
@@ -131,10 +131,10 @@
     #######################################################################
     ## USB OTG Host Controller driver
     #######################################################################
-    #display_msg Starting USB OTG Host driver...
-    #io-usb-otg -d hcd-dm816x-mg ioport=0x47401c00,irq=19
-    #waitfor /dev/usb/io-usb-otg 4
-    #devb-umass cam pnp
+    display_msg Starting USB OTG Host driver...
+    io-usb-otg -d hcd-dm816x-mg ioport=0x47401c00,irq=19
+    waitfor /dev/usb/io-usb-otg 4
+    devb-umass cam pnp
 
     #######################################################################
     ## USB OTG port (operating in device mode)...
@@ -186,22 +186,21 @@
     ##### Example of NCM device (Ethernet over USB) #####
 
     # Step 1 - Start USB device stack
-    #io-usb-otg -ddcd-usbncm-am335x-musbmhdrc ioport=0x47401400,irq=18,nodma,force_device_mode,inherit_cfg -n /dev/usb-dcd/io-usb-otg
+    #io-usb-otg -d dcd-usbncm-am335x-musbmhdrc ioport=0x47401400,irq=18,nodma,force_device_mode,inherit_cfg -n /dev/usb-dcd/io-usb-otg
     #waitfor /dev/usb-dcd/io-usb-otg 4
     #waitfor /dev/usb-dcd/devu-dcd-usbncm-am335x-musbmhdrc.so 4
 
-    ## Step 2 - Start USB NCM function driver
-    ## For best performance attach the usbdnet driver to an existing io-pkt stack. Alternatively multiple
-    #io-pkt stacks can be used (see SDP documentation for more details).
-    #io-pkt-v6-hc -d usbdnet usbdnet_mac=123456789abd,mac=123456789abc,protocol=ncm,path=/dev/usb-dcd/io-usb-otg
+    # Step 2 - Start USB NCM function driver
+    # For best performance attach the usbdnet driver to an existing io-pkt stack. Alternatively multiple
+    # io-pkt stacks can be used (see SDP documentation for more details).
+    #io-pkt-v6-hc -d usbdnet mac=123456789abc,protocol=ncm,path=/dev/usb-dcd/io-usb-otg
     #ulink_ctrl -s /dev/usb-dcd/io-usb-otg -l 1
-    
 
-    ## Step 3 - Assign IP address to ncm interface using DHCP OR any static IP.
+    # Step 3 - Assign IP address to ncm interface using DHCP OR any static IP.
     #if_up -p ncm0
 
     #ifconfig ncm0 192.168.10.100
-    ## OR
+    # OR
     #dhclient -nw -v -lf /tmp/dhclient-ncm.leases ncm0 &
 
     #######################################################################
@@ -223,7 +222,6 @@
     if_up -p dm0
     ifconfig dm0 up
     dhclient -nw dm0
-    
 
     #######################################################################
     ## REMOTE_DEBUG (gdb or Momentics)
@@ -231,10 +229,10 @@
     ##    for more information on remote debugging
     ##  - the commands shown require that NETWORK is enabled too
     #######################################################################
-    #devc-pty
-    #waitfor /dev/ptyp0 4
-    #waitfor /dev/socket 4
-    #qconn port=8000
+    devc-pty
+    waitfor /dev/ptyp0 4
+    waitfor /dev/socket 4
+    qconn
 
     #######################################################################
     ## Leds driver
@@ -248,6 +246,35 @@
     #######################################################################
     #display_msg Starting inetd daemon
     #inetd
+    
+    ##### Example of NCM device (Ethernet over USB) #####
+    # added by sami
+	display_msg Starting ncm device
+    # Step 1 - Start USB device stack
+    io-usb-otg -d dcd-usbncm-am335x-musbmhdrc ioport=0x47401400,irq=18,nodma,force_device_mode,inherit_cfg -n /dev/usb-dcd/io-usb-otg
+    waitfor /dev/usb-dcd/io-usb-otg 4
+    waitfor /dev/usb-dcd/devu-usbncm-am335x-musbmhdrc.so 4
+
+    # Step 2 - Start USB NCM function driver
+    # For best performance attach the usbdnet driver to an existing io-pkt stack. Alternatively multiple
+    # io-pkt stacks can be used (see SDP documentation for more details).
+    io-pkt-v6-hc -d usbdnet mac=123456789abc,protocol=ncm,path=/dev/usb-dcd/io-usb-otg
+    ulink_ctrl -s /dev/usb-dcd/io-usb-otg -l 1
+
+    # Step 3 - Assign IP address to ncm interface using DHCP OR any static IP.
+    if_up -p ncm0
+    
+    # Assign ip adress
+    ifconfig ncm0 up
+    ifconfig ncm0 192.168.8.2
+    
+    # Start dhcp server
+    # dhcpd.leases manually added to mounted sd card.
+    dhcpd -lf /mnt/sd/dhcpd.leases
+
+    #ifconfig ncm0 192.168.10.100
+    # OR
+    #dhclient -nw -v -lf /tmp/dhclient-ncm.leases ncm0 &
 
     [+session] sh /proc/boot/.console.sh &
 }
@@ -263,18 +290,10 @@
 # Shared libraries:
 # Programs require the runtime linker (ldqnx.so) to be at a fixed location
 
-/usr/lib/ldqnx.so.2=ldqnx.so.2
-libc.so.5
-[type=link] libc.so=libc.so.5
-libgcc_s.so.1
-[type=link] libgcc_s.so=libgcc_s.so.1
-libsecpol.so
-libsecpol.so.1
+libc.so
 libm.so
 libz.so
 libncursesw.so
-libqh.so.1
-libpam.so.2
 
 ###########################################################################
 ## uncomment for BLOCK device 
@@ -282,7 +301,7 @@ libpam.so.2
 libcam.so
 io-blk.so
 cam-disk.so
-# cam-cdrom.so
+cam-cdrom.so
 fs-qnx6.so
 fs-dos.so
 fs-udf.so
@@ -296,19 +315,20 @@ libusbdi.so
 ###########################################################################
 ## uncomment for USB Device Controller drivers
 ###########################################################################
-libusbdci.so
-#devu-dcd-am335x-musbmhdrc.so
+libusbdci.so # uncommented by sami
+devu-dcd-am335x-musbmhdrc.so # uncommented by sami
 #devu-dcd-usbumass-am335x-musbmhdrc.so
 #devu-dcd-usbser-am335x-musbmhdrc.so
-[search=../install/armle-v7/lib/dll] devu-dcd-usbncm-am335x-musbmhdrc.so
-#[search=../install/armle-v7/lib/dll] devu-dcd-usbrndis-am335x-musbmhdrc.so
+devu-dcd-usbncm-am335x-musbmhdrc.so # uncmmented by sami
+devu-usbncm-am335x-musbmhdrc.so # added by sami
 #devu-dcd-usbaudio-am335x-musbmhdrc.so
 
 ###########################################################################
 ## uncomment for USB Function drivers
 ###########################################################################
-#devnp-usbdnet.so
-#deva-ctrl-usb_dcd.so
+devnp-usbdnet.so # uncommented by sami
+devnp-ncm.so # added by sami
+deva-ctrl-usb_dcd.so #uncommented by sami
 
 ###########################################################################
 ## uncomment for SPI driver
@@ -321,8 +341,7 @@ spi-dm816x.so
 devnp-dm814x-am335x.so
 libsocket.so
 libcrypto.so
-libqcrypto.so.1.0
-libregex.so.1
+
 ###########################################################################
 ## uncomment for rcheck and mudflap support
 ###########################################################################
@@ -335,14 +354,13 @@ libregex.so.1
 ###########################################################################
 libtracelog.so.1
 libslog2.so
-libslog2.so.1
 libslog2parse.so
 libslog2shim.so
 
 ###########################################################################
 ## Audio support
 ###########################################################################
-# libasound.so
+libasound.so
 
 ###########################################################################
 ## for io-hid
@@ -382,9 +400,9 @@ devh-usb.so
 ###########################################################################
 ## Audio driver
 ###########################################################################
-# io-audio
-# wave
-# mix_ctl
+io-audio
+wave
+mix_ctl
 
 #######################################################################
 ## SERIAL driver
@@ -430,13 +448,14 @@ io-usb-otg
 usb
 devb-umass
 devb-ram
+#io-usb-dcd # added by sami
 
 ###########################################################################
 ## uncomment for USB Function drivers
 ###########################################################################
-ulink_ctrl
-#devu-umass_client-block
-#devc-serusb_dcd
+ulink_ctrl # uncommented by sami
+devu-umass_client-block #uncommented by sami
+devc-serusb_dcd # uncommented by sami
 
 ###########################################################################
 ## uncomment for NETWORKING
@@ -459,9 +478,10 @@ dhclient
 [search=${QNX_TARGET}/etc]/etc/dhclient.conf=dhclient.conf
 
 ###########################################################################
-## dhcp server
+## dhcpd support
 ###########################################################################
-dhcpd -6
+dhcpd # added by sami
+[search=../prebuilt/etc]/etc/dhcpd.conf=dhcpd.conf
 
 ###########################################################################
 ## Manager for human-interface devices
@@ -482,8 +502,8 @@ qconn
 ###########################################################################
 ## uncomment for required network clients and services
 ###########################################################################
-# fs-cifs
-# fs-nfs3
+fs-cifs
+fs-nfs3
 
 ##########################################################################
 ## Network services (telnet) support
@@ -530,8 +550,8 @@ qnxuser:x:qnxuser
 [uid=0 gid=0 perms=4755] /bin/login=login
 [uid=0 gid=0 perms=4755] /bin/passwd=passwd
 [uid=0 gid=0 perms=4755] /bin/su=su
-# [uid=0 gid=0 perms=0755] /usr/sbin/sshd=sshd
-# [uid=0 gid=0 perms=0755] /usr/sbin/ftpd=ftpd
+[uid=0 gid=0 perms=0755] /usr/sbin/sshd=sshd
+[uid=0 gid=0 perms=0755] /usr/sbin/ftpd=ftpd
 [uid=0 gid=0 perms=0755] /usr/sbin/inetd=inetd
 [uid=0 gid=0 perms=0755] /usr/sbin/telnetd=telnetd
 
@@ -540,13 +560,13 @@ qnxuser:x:qnxuser
 [uid=0 gid=0 type=dir dperms=0755] /etc
 [uid=0 gid=0 type=dir dperms=0755] /etc/pam.d
 [uid=0 gid=0 perms=0644] /etc/pam.d/login=${QNX_TARGET}/etc/pam.d/login
-#[uid=0 gid=0 perms=0644] /etc/pam.d/on=${QNX_TARGET}/etc/pam.d/on
+[uid=0 gid=0 perms=0644] /etc/pam.d/on=${QNX_TARGET}/etc/pam.d/on
 [uid=0 gid=0 perms=0644] /etc/pam.d/passwd=${QNX_TARGET}/etc/pam.d/passwd
 [uid=0 gid=0 perms=0644] /etc/pam.d/su=${QNX_TARGET}/etc/pam.d/su
 [uid=0 gid=0 perms=0644] /etc/pam.d/ftpd=${QNX_TARGET}/etc/pam.d/ftpd
 
-# [uid=0 gid=0 perms=0755] /usr/lib/pam_ftpusers.so=pam_ftpusers.so
-# [uid=0 gid=0 perms=0755] /usr/lib/pam_rootok.so=pam_rootok.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_ftpusers.so=pam_ftpusers.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_rootok.so=pam_rootok.so
 [uid=0 gid=0 perms=0755] /usr/lib/pam_qnx.so=pam_qnx.so
 #[uid=0 gid=0 perms=0755] /usr/lib/pam_deny.so=pam_deny.so
 #[uid=0 gid=0 perms=0755] /usr/lib/pam_echo.so=pam_echo.so
@@ -562,7 +582,7 @@ qnxuser:x:qnxuser
 ###########################################################################
 #libncursesw.so
 #mkqnx6fs
-#mkdosfs
+mkdosfs
 
 ###########################################################################
 ## general commands
