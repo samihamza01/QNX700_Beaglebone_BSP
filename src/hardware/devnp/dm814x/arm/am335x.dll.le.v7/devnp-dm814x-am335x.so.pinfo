@@ -1,8 +1,0 @@
-STATE=Desktop
-INSTALLDIR=armle-v7/lib/dll/
-INSTALLNAME=devnp-dm814x-am335x.so
-NAME=devnp-dm814x-am335x.so
-USER=devbox
-HOST=devbox
-DATE=2023/10/30-18:10:04-CET
-DESCRIPTION=dm814x ethernet driver

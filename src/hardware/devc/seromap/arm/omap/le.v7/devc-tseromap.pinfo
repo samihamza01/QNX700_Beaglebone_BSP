@@ -1,8 +1,0 @@
-STATE=Desktop
-INSTALLDIR=armle-v7/sbin/
-INSTALLNAME=devc-tseromap
-NAME=devc-tseromap
-USER=devbox
-HOST=devbox
-DATE=2023/10/30-18:10:03-CET
-DESCRIPTION=Character device driver for the OMAP 1510/5910 UART
